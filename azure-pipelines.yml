@@ -22,8 +22,9 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      git config --global http.extraheader "AUTHORIZATION: bearer $env:SYSTEM_ACCESSTOKEN"
       cd $(build.sourcesdirectory)/
-      git remote add originTest https://$(System.AccessToken)@dev.azure.com/singaone/BasicGIT/_git/BasicGIT
+      git remote add originTest https://dev.azure.com/singaone/BasicGIT/_git/BasicGIT
       git push -u originTest  --all
   env:
     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
